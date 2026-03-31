@@ -39,13 +39,13 @@ Le projet comprend :
 ├── models/
 │   ├── model_x_wins.pkl        # Modèle XGBoost final pour la victoire
 │   └── model_is_draw.pkl       # Modèle XGBoost final pour le nul
-├── notebooks/
-│   └── analysis_modeling.ipynb # EDA, Baseline et Modèles Avancés
+├── notebook.ipynb             # EDA, Baseline et Modèles Avancés
 ├── generator/
 │   └── generator.py            # Script de génération Minimax Alpha-Beta
 ├── interface/
 │   └── main.py                 # Interface jouable (Streamlit/Tkinter/Flask)
 └── README.md                   # Ce rapport
+└── README-jeu.md               # Le readme du jeu
 ````
 
 -----
