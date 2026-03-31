@@ -1,21 +1,16 @@
 -----
 
 ````markdown
-# 🎮 Projet Hackathon Machine Learning - ISPM S1
+# Projet Hackathon Machine Learning - ISPM S1
 
 > **Équipe R&D EdTech** : Conception d'une IA de Morpion Adaptative.
 > [Visiter le site de l'ISPM](https://ispm.m/)
 
 ---
 
-## 👥 Notre Groupe
+## Notre Groupe
 * **Nom du groupe** : More Than Conqueror
 * **Membres** :
-- 
-- 
-- 
-- 
-- VOLAMAMY Brainda N°11
     1. ELIAZAFY Jean Elido Clever N°19 (Chef de projet)
     2. Lezo Honoricia Muguette N°59 (Data Scientist)
     3. VOLAMAMY Brainda N°11 (ML Engineer)
@@ -26,7 +21,7 @@
 
 ---
 
-## 📝 Description du Projet
+## Description du Projet
 Ce projet a été réalisé dans le cadre d'un hackathon de 9 heures. L'objectif était de construire un pipeline complet de Machine Learning capable de jouer au Morpion. 
 Le projet comprend :
 1. La génération d'un dataset de ~2400 états de jeu via l'algorithme **Minimax**.
@@ -36,7 +31,7 @@ Le projet comprend :
 
 ---
 
-## 📂 Structure du Repository
+## Structure du Repository
 ```text
 .
 ├── resources/
@@ -55,7 +50,7 @@ Le projet comprend :
 
 -----
 
-## 📊 Résultats Machine Learning
+## Résultats Machine Learning
 
 Nous avons comparé notre Baseline (Régression Logistique) avec des modèles d'ensemble (Random Forest & XGBoost).
 
@@ -69,7 +64,7 @@ Nous avons comparé notre Baseline (Régression Logistique) avec des modèles d'
 
 -----
 
-## 🧠 Réponses aux Questions (Section 5)
+## Réponses aux Questions (Section 5)
 
 ### Q1 : Coefficients et Influence des Cases
 
@@ -94,7 +89,7 @@ En mode **Hybride**, l'IA devient nettement plus redoutable. Alors que l'IA-ML p
 
 -----
 
-## 🎥 Présentation Vidéo
+## Présentation Vidéo
 
 Retrouvez notre démonstration et l'explication de notre démarche ici :  
 👉 [**Lien vers la vidéo de présentation**]
