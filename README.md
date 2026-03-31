@@ -92,7 +92,7 @@ En mode **Hybride**, l'IA devient nettement plus redoutable. Alors que l'IA-ML p
 ## Présentation Vidéo
 
 Retrouvez notre démonstration et l'explication de notre démarche ici :  
-👉 [**Lien vers la vidéo de présentation**]
+👉 https://drive.google.com/drive/folders/1S_siH7sX6b33tvII6KpBC0Ot9XpP4d_E?usp=sharing
 
 -----
 
