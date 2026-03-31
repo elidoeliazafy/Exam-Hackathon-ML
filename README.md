@@ -4,7 +4,7 @@
 # Projet Hackathon Machine Learning - ISPM S1
 
 > **Équipe R&D EdTech** : Conception d'une IA de Morpion Adaptative.
-> [Visiter le site de l'ISPM](https://ispm.m/)
+> [Visiter le site de l'ISPM](https://ispm-edu.com/)
 
 ---
 
