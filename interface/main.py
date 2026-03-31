@@ -6,9 +6,9 @@ import numpy as np
 # ----------- CHARGEMENT DES MODÈLES ----------- #
 
 try:
-    with open('x_wins_model.pkl', 'rb') as f:
+    with open('../models/x_wins_model.pkl', 'rb') as f:
         model_wins = pickle.load(f)
-    with open('is_draw_model.pkl', 'rb') as f:
+    with open('../models/is_draw_model.pkl', 'rb') as f:
         model_draw = pickle.load(f)
     MODELS_LOADED = True
 except Exception as e:
@@ -27,22 +27,24 @@ def check_winner(board):
 def is_full(board):
     return all(x != 0 for x in board)
 
+def _encode_for_ml(board):
+    """ Transforme le board [9] en features [18] pour le modèle """
+    features = []
+    for cell in board:
+        features.append(1 if cell == 1 else 0)  # c_x
+        features.append(1 if cell == -1 else 0) # c_o
+    return np.array([features])
+
 def evaluate_ml(board):
-    """ Utilise les modèles XGBoost pour évaluer la position actuelle """
-    if not MODELS_LOADED:
-        return 0
+    if not MODELS_LOADED: return 0
     
-    # Préparation des données (XGBoost attend souvent un 2D array)
-    # Note: Assurez-vous que l'encodage (1, -1, 0) correspond à votre entraînement
-    data = np.array([board])
+    # Transformation en 18 colonnes avant prédiction
+    data = _encode_for_ml(board)
     
-    # Proba que X gagne (on veut que ce soit bas pour l'IA qui est O)
     prob_x_wins = model_wins.predict_proba(data)[0][1]
-    # Proba de match nul (valeur positive pour l'IA)
     prob_draw = model_draw.predict_proba(data)[0][1]
     
-    # Score pour l'IA (Joueur -1) : 
-    # Inverser la proba de X et ajouter un bonus pour le nul
+    # Score pour l'IA (Joueur -1)
     return (1.0 - prob_x_wins) + (0.5 * prob_draw)
 
 def hybrid_minimax(board, depth, alpha, beta, is_maximizing):
@@ -123,7 +125,9 @@ class TicTacToe:
                   command=self.back_menu).pack(side="bottom", fill="x", pady=10)
 
     def play(self, index):
-        if self.board[index] != 0: return
+        # 1. Vérifier si la case est vide ET si on n'attend pas l'IA
+        if self.board[index] != 0 or getattr(self, 'waiting_for_ai', False): 
+            return
 
         # --- Tour Humain ---
         self.make_move(index, 1)
@@ -132,13 +136,24 @@ class TicTacToe:
         # --- Tour IA / Adversaire ---
         if self.mode == "HUMAN":
             self.current_player = -1
-            # Dans ce mode, on attend juste le prochain clic qui sera traité par play()
         else:
-            self.root.update() # Refresh UI
+            # ON VERROUILLE
+            self.waiting_for_ai = True 
+            self.root.config(cursor="watch") # Curseur de chargement (optionnel)
+            
+            self.root.update() # Force l'affichage du pion X avant le calcul
+            
+            # Délai artificiel (optionnel) pour que ce soit moins brutal
+            # self.root.after(500) 
+            
             move = self.get_ai_move()
             if move != -1:
                 self.make_move(move, -1)
                 self.check_end()
+            
+            # ON DÉVERROUILLE
+            self.waiting_for_ai = False
+            self.root.config(cursor="hand2")
 
     def get_ai_move(self):
         if self.mode == "IA": # Mode ML Pur
